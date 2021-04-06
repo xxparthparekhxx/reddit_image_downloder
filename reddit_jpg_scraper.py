@@ -4,7 +4,7 @@ import os
 import shutil
 import json 
 
-number_of_posts=int(input("enter the number of photos you want"))
+number_of_posts=int(input("Enter the number of Photos :"))
 
 try:
     os.chdir(os.getcwd()+"\\Downloaded_Pictures")
@@ -19,7 +19,7 @@ try:
         print(creds)
 except:
     print("First time setup!")
-    cerds={"client_id":input("Enter client_id"),"client_secret":input("Enter client_secret")}
+    cerds={"client_id":input("Enter client_id :"),"client_secret":input("Enter client_secret  :")}
     with open("reddit_credentials.json","w")as f:
         json.dump(cerds,f)
     with open("reddit_credentials.json") as f:
@@ -44,8 +44,8 @@ try:
     os.mkdir(os.getcwd()+"\\jpg")
 except:
     pass
-print(os.listdir())
-subs =['meme','dankmeme'] #add any ammount 
+
+subs =['meme','dankmeme'] #add any amount 
 i = 0
 for sub in subs:
     for submission in reddit.subreddit(sub).hot(limit = number_of_posts ): 
