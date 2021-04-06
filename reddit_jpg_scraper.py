@@ -49,18 +49,21 @@ subs =['meme','dankmeme'] #add any ammount
 i = 0
 for sub in subs:
     for submission in reddit.subreddit(sub).hot(limit = number_of_posts ): 
-        url = submission.url
-        response = requests.get(url)
-        ext = url[-3:]
-        print(ext)
-        supported_types = ["png","jpg"]
-        if ext in supported_types:
-            i += 1 
-            file_name= "{}.{}.{}".format(i,str(submission.id),ext)
-            if file_name not in os.listdir(os.getcwd()+"\\{}".format(ext)): 
-                with open(file_name.lower().strip(" "),"wb")as f:
-                    f.write(response.content)
-                with open("titles_with_numbers.txt","w")as f:
-                    f.write(str(i) + submission.title+"\n")
-                shutil.move(file_name,os.getcwd()+"\\{}".format(ext))
-print(os.listdir())
+        try:
+            url = submission.url
+            response = requests.get(url)
+            ext = url[-3:]
+            print(ext)
+            supported_types = ["png","jpg"]
+            if ext in supported_types:
+                i += 1 
+                file_name= "{}.{}.{}".format(i,str(submission.id),ext)
+                if file_name not in os.listdir(os.getcwd()+"\\{}".format(ext)): 
+                    with open(file_name.lower().strip(" "),"wb")as f:
+                        f.write(response.content)
+                    with open("titles_with_numbers.txt","a")as f:
+                        f.write(str(i) + submission.title+" ID = "+submission.id+"\n")
+                    shutil.move(file_name,os.getcwd()+"\\{}".format(ext))
+        except:
+            pass
+os.chdir(ogpath)
