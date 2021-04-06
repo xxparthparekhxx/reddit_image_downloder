@@ -6,7 +6,7 @@ prerequesit
 easy to use image scraper 
 just add your reddit api private key
 
-###get your api keys from here:
+## get your api keys from here:
 https://www.reddit.com/prefs/apps
 tip:
 client_id is the smaller string
